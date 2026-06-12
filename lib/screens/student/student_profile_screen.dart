@@ -5,6 +5,8 @@ import 'widgets/dashboard_widgets.dart';
 import 'student_dashboard_screen.dart';
 import 'student_schedule_screen.dart';
 import 'student_stats_screen.dart';
+import '../../core/services/storage_service.dart';
+import '../role_selection/role_selection_screen.dart';
 
 // ── NEW: Import the global session file ──
 import '../../utils/user_session.dart';
@@ -89,8 +91,27 @@ class StudentProfileScreen extends StatelessWidget {
                 width: double.infinity,
                 height: 54,
                 child: ElevatedButton.icon(
-                  onPressed: () {
-                    Navigator.of(context).popUntil((route) => route.isFirst);
+                  onPressed: () async {
+                    await StorageService().deleteToken();
+
+                    UserSession.studentName = 'Student';
+                    UserSession.studentRollNo = '000000';
+                    UserSession.studentEmail = '';
+
+                    UserSession.teacherName = 'Teacher';
+                    UserSession.teacherEmail = '';
+                    UserSession.teacherId = 'FAC-0000';
+                    UserSession.teacherDept = 'General';
+
+                    if (context.mounted) {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const RoleSelectionScreen(),
+                        ),
+                        (route) => false,
+                      );
+                    }
                   },
                   icon: const Icon(Icons.logout_rounded, color: AppColors.error),
                   label: Text('Log Out', style: GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600, color: AppColors.error)),

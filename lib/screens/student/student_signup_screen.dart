@@ -3,8 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/services/student_auth_service.dart';
 import '../../theme/app_theme.dart';
 import 'student_dashboard_screen.dart';
+import 'student_login_screen.dart';
 
 // ── NEW: Import the global session file ──
 import '../../utils/user_session.dart';
@@ -53,6 +55,8 @@ class _StudentSignupScreenState extends State<StudentSignupScreen>
   String? _section;
   bool    _obscurePassword = true;
   bool    _isLoading       = false;
+
+  final _authService = StudentAuthService();
 
   late final AnimationController _fadeCtrl;
   late final Animation<double>   _fadeAnim;
@@ -105,24 +109,48 @@ class _StudentSignupScreenState extends State<StudentSignupScreen>
     if (!_formKey.currentState!.validate()) return;
     FocusScope.of(context).unfocus();
     setState(() => _isLoading = true);
-    
-    // Simulated delay — replace with real API call later
-    await Future.delayed(const Duration(seconds: 2));
-    if (!mounted) return;
-    setState(() => _isLoading = false);
-    
-    // ── NEW: Save data to Global Session ──
-    UserSession.studentName = _nameCtrl.text.trim().isNotEmpty ? _nameCtrl.text.trim() : 'Student';
-    UserSession.studentRollNo = _rollCtrl.text.trim().isNotEmpty ? _rollCtrl.text.trim() : '000000';
-    UserSession.studentEmail = _emailCtrl.text.trim();
 
-    // UPDATED NAVIGATION LOGIC:
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const StudentDashboardScreen(),
-      ),
-    );
+    try {
+      final response = await _authService.signup(
+        name: _nameCtrl.text.trim(),
+        email: _emailCtrl.text.trim(),
+        password: _passwordCtrl.text,
+        rollNo: _rollCtrl.text.trim(),
+        department: _department!,
+        semester: int.parse(_semester!),
+        section: _section!,
+      );
+
+      if (!mounted) return;
+
+      // ── Save data to Global Session ──
+      // Note: Adjust these keys based on your actual backend response structure
+      final studentData = response['data'] ?? {};
+      UserSession.studentName = studentData['name'] ?? _nameCtrl.text.trim();
+      UserSession.studentRollNo = studentData['rollNo'] ?? _rollCtrl.text.trim();
+      UserSession.studentEmail = studentData['email'] ?? _emailCtrl.text.trim();
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Registration successful!')),
+      );
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const StudentDashboardScreen(),
+        ),
+      );
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(e.toString().replaceAll('Exception: ', '')),
+          backgroundColor: AppColors.error,
+        ),
+      );
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
+    }
   }
 
   // ── Build ─────────────────────────────────────────────────────────────────
@@ -304,7 +332,32 @@ class _StudentSignupScreenState extends State<StudentSignupScreen>
                 // Register button
                 _RegisterButton(isLoading: _isLoading, onPressed: _submit),
 
-                const SizedBox(height: 16),
+                const SizedBox(height: 24),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Already have an account? ",
+                      style: AppTextStyles.bodyMedium(context.appTextSecondary),
+                    ),
+                    GestureDetector(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const StudentLoginScreen(),
+                        ),
+                      ),
+                      child: Text(
+                        "Login",
+                        style: AppTextStyles.bodyMedium(AppColors.primary)
+                            .copyWith(fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 24),
 
                 // Footer note
                 Row(
