@@ -1,55 +1,170 @@
 # Hybrid Smart Attendance System
 
-A comprehensive, production-ready attendance management solution featuring device fingerprinting, real-time analytics, and role-based access control.
+![Flutter](https://img.shields.io/badge/Flutter-3.x-blue)
+![Node.js](https://img.shields.io/badge/Node.js-Express-green)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Prisma-blue)
+![JWT](https://img.shields.io/badge/Auth-JWT-orange)
 
-## 🚀 Overview
-The Hybrid Smart Attendance System is designed to streamline classroom attendance through a secure mobile application and a robust Node.js backend. It solves common attendance issues like proxy marking by using unique device identification and session-based windows.
+A full-stack attendance management system built using **Flutter**, **Express.js**, **PostgreSQL**, and **Prisma ORM**. The system provides secure attendance marking through persistent device binding, role-based authentication, and administrator approval.
 
-### Key Features
-- **Dual Role Support**: Custom dashboards and workflows for both Students and Faculty.
-- **Device Fingerprinting**: Ensures each student can only mark attendance from their registered, approved device.
-- **Real-time Session Management**: Faculty can create and manage live attendance windows.
-- **Advanced Analytics**: Dynamic reports and statistics for monitoring attendance trends.
-- **Secure Authentication**: JWT-based security with session restoration and auto-login.
-- **Modern UI**: Built with Flutter following Material 3 design principles.
+---
 
-## 📂 Project Structure
-```text
-├── flutter_app/      # Cross-platform Flutter mobile application
-├── backend/          # Node.js API with Prisma ORM and PostgreSQL
-├── docs/             # Technical documentation and diagrams
-├── assets/           # UI assets and screenshots
-├── README.md
-├── LICENSE
-└── .gitignore
+## Features
+
+### Student
+- Secure Signup & Login
+- JWT Authentication
+- Active Session Detection
+- Attendance Marking
+- Attendance History
+- Attendance Statistics
+- Device Registration
+- Profile Management
+
+### Teacher
+- Secure Login
+- Session Creation
+- Dashboard & Analytics
+- Attendance Reports
+- Device Approval/Rejection
+- Student Monitoring
+- Profile Dashboard
+
+### Security
+- JWT Authentication
+- Role-Based Access Control
+- Persistent UUID Device Binding
+- One Active Device Policy
+- Administrator Approval Workflow
+
+---
+
+## Tech Stack
+
+| Category | Technology |
+|----------|------------|
+| Frontend | Flutter |
+| Backend | Express.js |
+| Database | PostgreSQL |
+| ORM | Prisma ORM |
+| Authentication | JWT |
+| Deployment | Railway |
+| Device Identity | UUID + SHA-256 |
+
+---
+
+## System Architecture
+
+> *(Add architecture diagram here)*
+
+```
+Flutter App
+      │
+ REST APIs (JWT)
+      │
+Express.js Backend
+      │
+Prisma ORM
+      │
+PostgreSQL
+      │
+Railway
 ```
 
-## 🛠️ Tech Stack
-- **Frontend**: Flutter, Dart, Google Fonts, Flutter Secure Storage
-- **Backend**: Node.js, Express, Prisma ORM
-- **Database**: PostgreSQL (Supabase/Railway compatible)
-- **Security**: JWT (JSON Web Tokens), Device UUID & Hash verification
+---
 
-## ⚙️ Setup Instructions
+## Project Structure
 
-### Backend Setup
-1. Navigate to the `backend/` directory.
-2. Install dependencies: `npm install`.
-3. Configure your environment: Copy `.env.example` to `.env` and fill in your database URL and JWT secret.
-4. Run migrations: `npx prisma migrate dev`.
-5. Start the server: `npm start`.
+```
+Hybrid-Smart-Attendance-System
+│
+├── backend/
+├── flutter_app/
+├── docs/
+├── assets/
+└── README.md
+```
 
-### Flutter App Setup
-1. Navigate to the `flutter_app/` directory.
-2. Install dependencies: `flutter pub get`.
-3. Update API configuration in `lib/core/constants/api_constants.dart` to point to your backend URL.
-4. Run the app: `flutter run`.
+---
 
-## 📸 Screenshots
-*Placeholders available in `docs/screenshots/`*
+## Setup
 
-## 📜 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+### Backend
 
-## 🤝 Contributing
-Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+```bash
+cd backend
+npm install
+npx prisma migrate dev
+npm start
+```
+
+### Flutter
+
+```bash
+cd flutter_app
+flutter pub get
+flutter run
+```
+
+---
+
+## API Overview
+
+| Endpoint | Purpose |
+|----------|---------|
+| POST /student/signup | Student Registration |
+| POST /student/login | Student Login |
+| POST /teacher/login | Teacher Login |
+| POST /session/create | Create Attendance Session |
+| GET /session/active | Active Session |
+| POST /attendance/mark | Mark Attendance |
+| GET /attendance/history | Attendance History |
+| GET /teacher/dashboard | Teacher Dashboard |
+| POST /teacher/approve-device | Approve Device |
+
+---
+
+## Screenshots
+
+> Add screenshots here
+
+- Student Login
+- Student Dashboard
+- Attendance Flow
+- Attendance History
+- Teacher Dashboard
+- Device Approval
+- Analytics
+
+---
+
+## My Contribution
+
+As part of a **5-member capstone team**, I was responsible for:
+
+- Backend Architecture
+- Express.js REST APIs
+- PostgreSQL Database Design
+- Prisma ORM Integration
+- JWT Authentication
+- Device Binding Workflow
+- Railway Deployment
+- Flutter Backend Integration
+- API Contract Design
+- End-to-End Testing
+
+---
+
+## Future Improvements
+
+- Subject-wise Attendance Analytics
+- Timetable Integration
+- Notification System
+- Real-time Updates
+- Offline Support
+
+---
+
+## License
+
+This project is licensed under the MIT License.
