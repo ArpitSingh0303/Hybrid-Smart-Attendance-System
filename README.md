@@ -1,17 +1,55 @@
-# hybrid_attendance_app
+# Hybrid Smart Attendance System
 
-A new Flutter project.
+A comprehensive, production-ready attendance management solution featuring device fingerprinting, real-time analytics, and role-based access control.
 
-## Getting Started
+## 🚀 Overview
+The Hybrid Smart Attendance System is designed to streamline classroom attendance through a secure mobile application and a robust Node.js backend. It solves common attendance issues like proxy marking by using unique device identification and session-based windows.
 
-This project is a starting point for a Flutter application.
+### Key Features
+- **Dual Role Support**: Custom dashboards and workflows for both Students and Faculty.
+- **Device Fingerprinting**: Ensures each student can only mark attendance from their registered, approved device.
+- **Real-time Session Management**: Faculty can create and manage live attendance windows.
+- **Advanced Analytics**: Dynamic reports and statistics for monitoring attendance trends.
+- **Secure Authentication**: JWT-based security with session restoration and auto-login.
+- **Modern UI**: Built with Flutter following Material 3 design principles.
 
-A few resources to get you started if this is your first Flutter project:
+## 📂 Project Structure
+```text
+├── flutter_app/      # Cross-platform Flutter mobile application
+├── backend/          # Node.js API with Prisma ORM and PostgreSQL
+├── docs/             # Technical documentation and diagrams
+├── assets/           # UI assets and screenshots
+├── README.md
+├── LICENSE
+└── .gitignore
+```
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## 🛠️ Tech Stack
+- **Frontend**: Flutter, Dart, Google Fonts, Flutter Secure Storage
+- **Backend**: Node.js, Express, Prisma ORM
+- **Database**: PostgreSQL (Supabase/Railway compatible)
+- **Security**: JWT (JSON Web Tokens), Device UUID & Hash verification
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## ⚙️ Setup Instructions
+
+### Backend Setup
+1. Navigate to the `backend/` directory.
+2. Install dependencies: `npm install`.
+3. Configure your environment: Copy `.env.example` to `.env` and fill in your database URL and JWT secret.
+4. Run migrations: `npx prisma migrate dev`.
+5. Start the server: `npm start`.
+
+### Flutter App Setup
+1. Navigate to the `flutter_app/` directory.
+2. Install dependencies: `flutter pub get`.
+3. Update API configuration in `lib/core/constants/api_constants.dart` to point to your backend URL.
+4. Run the app: `flutter run`.
+
+## 📸 Screenshots
+*Placeholders available in `docs/screenshots/`*
+
+## 📜 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🤝 Contributing
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.

@@ -1,0 +1,54 @@
+name: hybrid_attendance_app
+description: A hybrid attendance tracking app for students and teachers.
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  http: ^1.2.1
+  flutter_secure_storage: ^9.2.2
+
+  # Icons
+  cupertino_icons: ^1.0.8
+
+  # Typography & Fonts
+  google_fonts: ^6.2.1
+
+  # Navigation
+  go_router: ^13.2.1
+
+  # State Management
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+
+  # UI Utilities
+  flutter_svg: ^2.0.10+1
+  cached_network_image: ^3.3.1
+  shimmer: ^3.0.0
+  lottie: ^3.1.0
+
+  # Charts
+  fl_chart: ^0.68.0
+
+  # Utils
+  intl: ^0.19.0
+  gap: ^3.0.1
+  uuid: ^4.4.0
+  device_info_plus: ^10.1.0
+  crypto: ^3.0.3
+  equatable: ^2.0.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  build_runner: ^2.4.9
+  riverpod_generator: ^2.4.0
+
+flutter:
+  uses-material-design: true
