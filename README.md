@@ -55,9 +55,6 @@ A full-stack attendance management system built using **Flutter**, **Express.js*
 
 ## System Architecture
 
-> *(Add architecture diagram here)*
-
-```
 Flutter App
       │
  REST APIs (JWT)
@@ -121,20 +118,6 @@ flutter run
 | GET /attendance/history | Attendance History |
 | GET /teacher/dashboard | Teacher Dashboard |
 | POST /teacher/approve-device | Approve Device |
-
----
-
-## Screenshots
-
-> Add screenshots here
-
-- Student Login
-- Student Dashboard
-- Attendance Flow
-- Attendance History
-- Teacher Dashboard
-- Device Approval
-- Analytics
 
 ---
 
