@@ -53,23 +53,6 @@ A full-stack attendance management system built using **Flutter**, **Express.js*
 
 ---
 
-## System Architecture
-
-Flutter App
-      │
- REST APIs (JWT)
-      │
-Express.js Backend
-      │
-Prisma ORM
-      │
-PostgreSQL
-      │
-Railway
-```
-
----
-
 ## Project Structure
 
 ```
