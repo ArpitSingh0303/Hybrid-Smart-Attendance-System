@@ -104,23 +104,6 @@ flutter run
 
 ---
 
-## My Contribution
-
-As part of a **5-member capstone team**, I was responsible for:
-
-- Backend Architecture
-- Express.js REST APIs
-- PostgreSQL Database Design
-- Prisma ORM Integration
-- JWT Authentication
-- Device Binding Workflow
-- Railway Deployment
-- Flutter Backend Integration
-- API Contract Design
-- End-to-End Testing
-
----
-
 ## Future Improvements
 
 - Subject-wise Attendance Analytics
